@@ -56,19 +56,24 @@ public class FormAsientos extends javax.swing.JFrame {
         mostrarReporte();
     }
     public void mostrarAsientos() {
-        StringBuilder asientosDisponibles = new StringBuilder("Asientos Disponibles en Terminal: " + operacion.getTerminalActual() + "\n");
-        for (int i = 0; i < operacion.getAsientosDisponibles().size(); i++) {
-            Asiento asiento = operacion.getAsientosDisponibles().get(i);
-            asientosDisponibles.append("Asiento ").append(asiento.getNumero()).append(": Disponible\n");
-        }
-        reporteArea.setText(asientosDisponibles.toString());
+    StringBuilder asientosDisponibles = new StringBuilder("Asientos Disponibles en Terminal: " + operacion.getTerminalActual() + "\n");
+    for (int i = 0; i < operacion.getAsientosDisponibles().size(); i++) {
+        Asiento asiento = operacion.getAsientosDisponibles().get(i);
+        asientosDisponibles.append("Asiento ").append(asiento.getNumero()).append(": Disponible\n");
     }
+    reporteArea.setText(asientosDisponibles.toString());
+}
+
 
     public void mostrarReporte() {
         String reporte = operacion.mostrarReporte();
         reporteArea.append("\n" + reporte);
     }
-    
+    /**
+    * Método principal que inicia la aplicación creando una instancia de `Operation`
+    * y pasando esta instancia al formulario `FormAsientos`, el cual luego se hace visible.
+    * @param args Los argumentos de línea de comandos, no utilizados en este caso.
+    */
     public static void main(String[] args) {
         Operation operacion = new Operation();
         new FormAsientos(operacion).setVisible(true);
@@ -98,6 +103,7 @@ public class FormAsientos extends javax.swing.JFrame {
         destinoField = new javax.swing.JTextField();
         asientoCombo = new javax.swing.JComboBox<>();
         JScrollPane = new javax.swing.JScrollPane();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,6 +140,8 @@ public class FormAsientos extends javax.swing.JFrame {
 
         asientoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel6.setText("Asiento");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,10 +154,11 @@ public class FormAsientos extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(109, 109, 109)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(precioField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(22, 22, 22))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(114, 114, 114))
+                            .addComponent(precioField)))
                     .addComponent(JScrollPane))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -159,13 +168,15 @@ public class FormAsientos extends javax.swing.JFrame {
                         .addComponent(btnAvanzar)
                         .addGap(66, 66, 66))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(nombreField)
-                            .addComponent(destinoField)
-                            .addComponent(asientoCombo, 0, 203, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(nombreField)
+                                .addComponent(destinoField)
+                                .addComponent(asientoCombo, 0, 203, Short.MAX_VALUE))
+                            .addComponent(jLabel6))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(253, 253, 253)
@@ -177,9 +188,7 @@ public class FormAsientos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(2, 2, 2)))
@@ -191,7 +200,9 @@ public class FormAsientos extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(destinoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(asientoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(173, 173, 173)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -204,12 +215,12 @@ public class FormAsientos extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(precioField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(precioField, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(1, 1, 1)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(115, 115, 115))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(96, 96, 96))
         );
 
         pack();
@@ -282,6 +293,7 @@ public class FormAsientos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombreField;
     private javax.swing.JTextField precioField;
